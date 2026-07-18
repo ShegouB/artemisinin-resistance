@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Artemisinin Resistance Scan Report</title>
+<style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #0D1B2A; color: #E2E8F0; margin: 0; padding: 40px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    h1 { color: #FFFFFF; border-bottom: 3px solid #0D9488; padding-bottom: 12px; }
+    .subtitle { color: #94A3B8; margin-bottom: 30px; }
+    .stats { display: flex; gap: 20px; margin-bottom: 30px; }
+    .stat-box { background: #1E293B; border-radius: 10px; padding: 20px; flex: 1; text-align: center; border: 1px solid #334155; }
+    .stat-num { font-size: 36px; font-weight: bold; color: #0D9488; }
+    .stat-label { font-size: 13px; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+    .stat-box.resistant .stat-num { color: #DC2626; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #1E293B; border-radius: 8px; overflow: hidden; }
+    th { background: #0D9488; color: white; padding: 12px 15px; text-align: left; font-size: 13px; text-transform: uppercase; }
+    td { padding: 10px 15px; border-bottom: 1px solid #334155; font-size: 14px; }
+    tr.resistant { background: rgba(220, 38, 38, 0.08); }
+    tr.resistant .status { color: #EF4444; font-weight: bold; }
+    tr.wildtype .status { color: #10B981; }
+    .section-title { color: #0D9488; margin-top: 40px; font-size: 18px; }
+    .footer { margin-top: 40px; color: #64748B; font-size: 12px; border-top: 1px solid #334155; padding-top: 20px; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Artemisinin Resistance Mutation Scanner</h1>
+    <div class="subtitle">Project 3 - kelch13 Field Isolate Screening Report</div>
+
+    <div class="stats">
+        <div class="stat-box">
+            <div class="stat-num">30</div>
+            <div class="stat-label">Isolates Screened</div>
+        </div>
+        <div class="stat-box resistant">
+            <div class="stat-num">7</div>
+            <div class="stat-label">Resistant Isolates</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-num">23</div>
+            <div class="stat-label">Wild-type Isolates</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-num">7</div>
+            <div class="stat-label">Countries Represented</div>
+        </div>
+    </div>
+
+    <div class="section-title">Per-Isolate Results</div>
+    <table>
+        <tr>
+            <th>Isolate ID</th>
+            <th>Country</th>
+            <th>BLAST Identity</th>
+            <th>E-value</th>
+            <th>Status</th>
+            <th>Mutations Found</th>
+        </tr>
+        
+        <tr class="resistant">
+            <td>ISO001_Burkina_Faso</td>
+            <td>Burkina Faso</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">RESISTANT</td>
+            <td>R539T</td>
+        </tr>
+        <tr class="resistant">
+            <td>ISO005_Benin</td>
+            <td>Benin</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">RESISTANT</td>
+            <td>Y493H</td>
+        </tr>
+        <tr class="resistant">
+            <td>ISO014_Senegal</td>
+            <td>Senegal</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">RESISTANT</td>
+            <td>P553L</td>
+        </tr>
+        <tr class="resistant">
+            <td>ISO019_Cote_dIvoire</td>
+            <td>Cote d'Ivoire</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">RESISTANT</td>
+            <td>R539T</td>
+        </tr>
+        <tr class="resistant">
+            <td>ISO021_Burkina_Faso</td>
+            <td>Burkina Faso</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">RESISTANT</td>
+            <td>Y493H</td>
+        </tr>
+        <tr class="resistant">
+            <td>ISO025_Senegal</td>
+            <td>Senegal</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">RESISTANT</td>
+            <td>I543T</td>
+        </tr>
+        <tr class="resistant">
+            <td>ISO029_Nigeria</td>
+            <td>Nigeria</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">RESISTANT</td>
+            <td>P553L</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO002_Nigeria</td>
+            <td>Nigeria</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO003_Burkina_Faso</td>
+            <td>Burkina Faso</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO004_Burkina_Faso</td>
+            <td>Burkina Faso</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO006_Nigeria</td>
+            <td>Nigeria</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO007_Benin</td>
+            <td>Benin</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO008_Cote_dIvoire</td>
+            <td>Cote d'Ivoire</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO009_Mali</td>
+            <td>Mali</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO010_Benin</td>
+            <td>Benin</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO011_Ghana</td>
+            <td>Ghana</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO012_Senegal</td>
+            <td>Senegal</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO013_Nigeria</td>
+            <td>Nigeria</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO015_Burkina_Faso</td>
+            <td>Burkina Faso</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO016_Senegal</td>
+            <td>Senegal</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO017_Benin</td>
+            <td>Benin</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO018_Burkina_Faso</td>
+            <td>Burkina Faso</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO020_Senegal</td>
+            <td>Senegal</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO022_Mali</td>
+            <td>Mali</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO023_Nigeria</td>
+            <td>Nigeria</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO024_Cote_dIvoire</td>
+            <td>Cote d'Ivoire</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO026_Nigeria</td>
+            <td>Nigeria</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO027_Burkina_Faso</td>
+            <td>Burkina Faso</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO028_Ghana</td>
+            <td>Ghana</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+        <tr class="wildtype">
+            <td>ISO030_Mali</td>
+            <td>Mali</td>
+            <td>N/A%</td>
+            <td>N/A</td>
+            <td class="status">wild-type</td>
+            <td>-</td>
+        </tr>
+    </table>
+
+    <div class="section-title">Isolates per Country</div>
+    <table>
+        <tr><th>Country</th><th>Isolate Count</th></tr>
+        <tr><td>Benin</td><td>4</td></tr><tr><td>Burkina Faso</td><td>7</td></tr><tr><td>Cote d'Ivoire</td><td>3</td></tr><tr><td>Ghana</td><td>2</td></tr><tr><td>Mali</td><td>3</td></tr><tr><td>Nigeria</td><td>6</td></tr><tr><td>Senegal</td><td>5</td></tr>
+    </table>
+
+    <div class="footer">
+        Generated: 2026-07-17 00:34<br>
+        Igbega X Bioinformatics Group - MSc Bioinformatics Self-Training Program<br>
+        Reference: kelch13 P. falciparum 3D7 (XP_001350158.1)<br>
+        Screened positions: 9 WHO-validated resistance mutations (propeller domain 440-680)
+    </div>
+</div>
+</body>
+</html>

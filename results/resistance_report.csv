@@ -1,0 +1,31 @@
+isolate_id,country,blast_identity_pct,blast_evalue,resistance_status,mutations_found,mutation_positions,mutation_details
+ISO001_Burkina_Faso,Burkina Faso,N/A,N/A,RESISTANT,1,539,R539T(Southeast Asia / emerging Africa)
+ISO002_Nigeria,Nigeria,N/A,N/A,wild-type,0,,
+ISO003_Burkina_Faso,Burkina Faso,N/A,N/A,wild-type,0,,
+ISO004_Burkina_Faso,Burkina Faso,N/A,N/A,wild-type,0,,
+ISO005_Benin,Benin,N/A,N/A,RESISTANT,1,493,Y493H(Southeast Asia)
+ISO006_Nigeria,Nigeria,N/A,N/A,wild-type,0,,
+ISO007_Benin,Benin,N/A,N/A,wild-type,0,,
+ISO008_Cote_dIvoire,Cote d'Ivoire,N/A,N/A,wild-type,0,,
+ISO009_Mali,Mali,N/A,N/A,wild-type,0,,
+ISO010_Benin,Benin,N/A,N/A,wild-type,0,,
+ISO011_Ghana,Ghana,N/A,N/A,wild-type,0,,
+ISO012_Senegal,Senegal,N/A,N/A,wild-type,0,,
+ISO013_Nigeria,Nigeria,N/A,N/A,wild-type,0,,
+ISO014_Senegal,Senegal,N/A,N/A,RESISTANT,1,553,P553L(Southeast Asia)
+ISO015_Burkina_Faso,Burkina Faso,N/A,N/A,wild-type,0,,
+ISO016_Senegal,Senegal,N/A,N/A,wild-type,0,,
+ISO017_Benin,Benin,N/A,N/A,wild-type,0,,
+ISO018_Burkina_Faso,Burkina Faso,N/A,N/A,wild-type,0,,
+ISO019_Cote_dIvoire,Cote d'Ivoire,N/A,N/A,RESISTANT,1,539,R539T(Southeast Asia / emerging Africa)
+ISO020_Senegal,Senegal,N/A,N/A,wild-type,0,,
+ISO021_Burkina_Faso,Burkina Faso,N/A,N/A,RESISTANT,1,493,Y493H(Southeast Asia)
+ISO022_Mali,Mali,N/A,N/A,wild-type,0,,
+ISO023_Nigeria,Nigeria,N/A,N/A,wild-type,0,,
+ISO024_Cote_dIvoire,Cote d'Ivoire,N/A,N/A,wild-type,0,,
+ISO025_Senegal,Senegal,N/A,N/A,RESISTANT,1,543,I543T(Southeast Asia)
+ISO026_Nigeria,Nigeria,N/A,N/A,wild-type,0,,
+ISO027_Burkina_Faso,Burkina Faso,N/A,N/A,wild-type,0,,
+ISO028_Ghana,Ghana,N/A,N/A,wild-type,0,,
+ISO029_Nigeria,Nigeria,N/A,N/A,RESISTANT,1,553,P553L(Southeast Asia)
+ISO030_Mali,Mali,N/A,N/A,wild-type,0,,
