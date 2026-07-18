@@ -1,6 +1,6 @@
 # project3/scripts/scan_resistance.py
 # Author: Boris Djagou
-# Date: July 19, 2026
+# Date: July 18, 2026
 # PROJECT 3 - Artemisinin Resistance Mutation Scanner
 # BLAST-based pipeline to screen kelch13 field isolates for WHO-validated mutations
 
@@ -10,7 +10,7 @@ import csv
 from datetime import datetime
 
 REFERENCE_FASTA = "data/reference.fasta"
-ISOLATES_FASTA = "data/field_isolates.fasta"
+ISOLATES_FASTA = "data/real_field_isolates.fasta"
 DB_DIR = "results/blast_db"
 BLAST_OUT = "results/blast_hits.tsv"
 
@@ -59,12 +59,18 @@ def build_blast_db():
 
 
 def run_blast():
-    """BLAST all isolates against the reference."""
-    cmd = ["blastp", "-query", ISOLATES_FASTA, "-db", f"{DB_DIR}/kelch13_ref",
-           "-out", BLAST_OUT, "-outfmt",
-           "6 qseqid sseqid pident length mismatch gapopen "
-           "qstart qend sstart send evalue bitscore",
-           "-evalue", "1e-5"]
+    """
+    BLAST all isolates against the reference.
+    We request custom output formats including qseq (query alignment) 
+    and sseq (subject alignment) to perform position-specific coordinate mapping.
+    """
+    cmd = [
+        "blastp", "-query", ISOLATES_FASTA, "-db", f"{DB_DIR}/kelch13_ref",
+        "-out", BLAST_OUT, "-outfmt",
+        "6 qseqid sseqid pident length mismatch gapopen "
+        "qstart qend sstart send evalue bitscore qseq sseq",
+        "-evalue", "1e-5"
+    ]
     result = subprocess.run(cmd, capture_output=True, text=True)
     return result.returncode == 0, result.stderr
 
@@ -101,23 +107,46 @@ def parse_isolate_fasta(filepath):
     return isolates
 
 
-def scan_for_mutations(sequence, reference_seq):
-    """Check all 9 WHO-validated resistance positions in one isolate sequence."""
+def map_and_scan_mutations(blast_hsp):
+    """
+    Map reference positions to query coordinates using BLAST HSP alignment string traversal.
+    This resolves issues caused by sequence truncation, insertions, or deletions (indels).
+    """
     mutations_found = []
+    
+    # Extraction des coordonnées et chaînes d'alignement de l'HSP (High-scoring Segment Pair)
+    sstart = int(blast_hsp["sstart"])
+    send = int(blast_hsp["send"])
+    qseq = blast_hsp["qseq"]
+    sseq = blast_hsp["sseq"]
+    
+    for ref_pos, info in RESISTANCE_POSITIONS.items():
+        # Vérification si la position d'intérêt est couverte par l'alignement
+        if not (sstart <= ref_pos <= send):
+            continue  # Position non couverte par le fragment séquencé
 
-    for pos, info in RESISTANCE_POSITIONS.items():
-        idx = pos - 1
-        if idx >= len(sequence):
-            continue
+        # Parcours des chaînes alignées pour mapper la position de la référence (subject)
+        current_ref_pos = sstart
+        observed_residue = None
 
-        observed = sequence[idx]
+        for i in range(len(sseq)):
+            char_s = sseq[i]
+            char_q = qseq[i]
+
+            if char_s != '-':
+                if current_ref_pos == ref_pos:
+                    observed_residue = char_q
+                    break
+                current_ref_pos += 1
+            # Les gaps dans la référence (insertions dans la requête) ne font pas avancer la position de la référence
+
+        # Vérification si l'acide aminé observé dévie du type sauvage (et n'est pas un gap)
         expected_wt = info["wt"]
-
-        if observed != expected_wt and observed != "-":
+        if observed_residue and observed_residue != expected_wt and observed_residue != "-":
             mutations_found.append({
-                "position": pos,
+                "position": ref_pos,
                 "wild_type": expected_wt,
-                "observed": observed,
+                "observed": observed_residue,
                 "mutation_name": info["name"],
                 "known_region": info["region"],
             })
@@ -169,11 +198,13 @@ def generate_html_report(results, output_path):
             for m in r["mutations"]
         ) if r["mutations"] else "-"
 
+        identity_val = f"{r['identity']}%" if r['identity'] != "N/A" else "N/A"
+
         rows_html += f"""
         <tr class="{status_class}">
             <td>{r['isolate_id']}</td>
             <td>{r['country']}</td>
-            <td>{r['identity']}%</td>
+            <td>{identity_val}</td>
             <td>{r['evalue']}</td>
             <td class="status">{status}</td>
             <td>{mutations_str}</td>
@@ -267,7 +298,7 @@ def generate_html_report(results, output_path):
 
 
 def main():
-    print("\nPROJECT 3 - Artemisinin Resistance Mutation Scanner")
+    print("\nPROJECT 3 - Artemisinin Resistance Mutation Scanner (Alignment-Aware)")
     print("=" * 65)
 
     print("\n[1/5] Preparing reference sequence...")
@@ -290,28 +321,50 @@ def main():
     print("\n[4/5] Parsing isolates and scanning for resistance mutations...")
     isolates = parse_isolate_fasta(ISOLATES_FASTA)
 
+    # Lecture des données BLAST avec l'inclusion de qseq et sseq (champs 12 et 13)
     blast_data = {}
     with open(BLAST_OUT) as f:
         for line in f:
             fields = line.strip().split("\t")
-            qseqid = fields[0]
+            qseqid = fields[0].split("|")[0]
             pident = fields[2]
             evalue = fields[10]
+            
+            # Stockage de toutes les informations HSP nécessaires à la cartographie des coordonnées
             if qseqid not in blast_data:
-                blast_data[qseqid] = {"identity": pident, "evalue": evalue}
+                blast_data[qseqid] = {
+                    "identity": pident,
+                    "evalue": evalue,
+                    "qstart": fields[6],
+                    "qend": fields[7],
+                    "sstart": fields[8],
+                    "send": fields[9],
+                    "qseq": fields[12],
+                    "sseq": fields[13]
+                }
 
     results = []
     for isolate_id, data in isolates.items():
-        mutations = scan_for_mutations(data["sequence"], reference_seq)
-        blast_info = blast_data.get(isolate_id, {"identity": "N/A", "evalue": "N/A"})
+        # Cartographie des mutations basée sur l'HSP BLAST ou repli sur l'approche par défaut si aucun hit
+        blast_info = blast_data.get(isolate_id)
+        
+        if blast_info:
+            mutations = map_and_scan_mutations(blast_info)
+            identity = blast_info["identity"]
+            evalue = blast_info["evalue"]
+        else:
+            # Cas d'exclusion : l'isolat ne s'aligne pas du tout sur kelch13 (hors cible / mauvaise qualité)
+            mutations = []
+            identity = "N/A"
+            evalue = "N/A"
 
         results.append({
             "isolate_id": isolate_id,
             "country": data["country"],
             "sequence": data["sequence"],
             "mutations": mutations,
-            "identity": blast_info["identity"],
-            "evalue": blast_info["evalue"],
+            "identity": identity,
+            "evalue": evalue,
         })
 
         status = "RESISTANT" if mutations else "wild-type"

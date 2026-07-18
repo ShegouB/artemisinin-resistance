@@ -1,6 +1,6 @@
 # project3/scripts/build_field_isolates.py
 # Author: Boris Djagou
-# Date: July 18, 2026
+# Date: July 19, 2026
 # PROJECT 3 - Build a realistic field isolate dataset with country metadata
 # Simulates MalariaGEN-style kelch13 field isolate sequences
 
