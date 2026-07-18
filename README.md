@@ -141,9 +141,9 @@ The pipeline has been benchmarked using a dual-validation strategy:
 
 1. **Ariey, F. et al.** (2014). A molecular marker of artemisinin-resistant *Plasmodium falciparum* malaria. *Nature*, 505(7481), 50–55. https://doi.org/10.1038/nature12876
 2. **Ashley, E. A. et al.** (2014). Spread of artemisinin resistance in *Plasmodium falciparum* malaria. *NEJM*, 371(5), 411–423. https://doi.org/10.1056/NEJMoa1314981
-3. **Uwimana, A. et al.** (2020). Emergence and clonal expansion of *kelch13* R561H mutant parasites in Rwanda. *Nature Medicine*, 26(7), 1061–1064. https://doi.org/10.1038/s41591-020-0896-3
+3. **Uwimana, A. et al.** (2020). Emergence and clonal expansion of in vitro artemisinin-resistant *Plasmodium falciparum* *kelch13* R561H mutant parasites in Rwanda. *Nature Medicine*, 26(10), 1602–1608. https://doi.org/10.1038/s41591-020-1005-2
 4. **MalariaGEN, Ahouidi, A. et al.** (2021). An open dataset of *Plasmodium falciparum* genome variation in 7,000 worldwide samples. *Wellcome Open Research*, 6, 42. https://doi.org/10.12688/wellcomeopenres.16168.1
-5. **Dieng, C. C., et al.** (2023). Distribution of *Plasmodium falciparum* *K13* gene polymorphisms across transmission settings in Ghana. *Malaria Journal*, 22, 345. https://doi.org/10.1186/s12936-023-04768-4
-6. **Ajogbasile, F. V., et al.** (2022). Molecular profiling of the artemisinin resistance Kelch 13 gene in *Plasmodium falciparum* from Nigeria. *PLOS One*, 17(2), e0264548. https://doi.org/10.1371/journal.pone.0264548
-7. **Arzika, I. I. et al.** (2023). *Plasmodium falciparum* *kelch13* polymorphisms identified after treatment failure with artemisinin-based combination therapy in Niger. *Malaria Journal*, 22, 142. https://doi.org/10.1186/s12936-023-04565-x
-8. **Schmedes, S. et al.** (2021). *Plasmodium falciparum* *kelch13* Mutations, 9 Countries in Africa, 2014–2018. *Emerging Infectious Diseases*, 27(1), 295–298. https://doi.org/10.3201/eid2701.201502
+5. **Dieng, C. C. et al.** (2023). Distribution of *Plasmodium falciparum* *K13* gene polymorphisms across transmission settings in Ghana. *BMC Infectious Diseases*, 23(1), 801. https://doi.org/10.1186/s12879-023-08812-w
+6. **Ajogbasile, F. V. et al.** (2022). Molecular profiling of the artemisinin resistance Kelch 13 gene in *Plasmodium falciparum* from Nigeria. *PLOS One*, 17(2), e0264548. https://doi.org/10.1371/journal.pone.0264548
+7. **Arzika, I. I., Lamine, M. M., Ibrahim, M. L., ... Lobo, N. F.** (2023). *Plasmodium falciparum* *kelch13* polymorphisms identified after treatment failure with artemisinin-based combination therapy in Niger. *Malaria Journal*, 22, 142. https://doi.org/10.1186/s12936-023-04571-w
+8. **Schmedes, S. et al.** (2021). *Plasmodium falciparum* *kelch13* Mutations, 9 Countries in Africa, 2014–2018. *Emerging Infectious Diseases*, 27(7), 1902–1908. https://doi.org/10.3201/eid2707.203230
